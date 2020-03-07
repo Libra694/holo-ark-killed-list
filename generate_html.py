@@ -31,7 +31,7 @@ for path in paths:
     global_id = ':'.join([video_id, frame_id, roi_id])
 
     timestamp = iso2jstdt(df1.at[video_id, 'start']) + timedelta(seconds=int(frame_id)//30)
-    timestamp = timestamp.strftime('%Y/%m/%d %H:%M:%S.%f')
+    timestamp = timestamp.strftime('%Y/%m/%d %H:%M:%S.%f')[:-4]
     
     url = 'https://www.youtube.com/watch?v=' + video_id + '&t=' + str(int(frame_id)//30)
 
