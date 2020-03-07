@@ -11,15 +11,19 @@
         {% for row in data %}
         <tr>
             <th>{{row.timestamp}}</th>
+            <!--
             <th>{{row.id}}</th>
             <th><input type="checkbox" id="{{row.id}}"></th>
+            -->
             <th><a href="{{row.url}}"><img src="{{row.image}}", width="1200" /></a></th>
         </tr>
         {% endfor %}
     </table>
+    <!--
     <br/>
     <input type="file" id="upload"><br/>
     <a href="" id="download" onclick="download_cheked()">Download</a>
+    -->
 </body>
 
 <script>
