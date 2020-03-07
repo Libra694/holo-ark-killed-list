@@ -16,7 +16,7 @@ def iso2jstdt(iso_str):
 
 BASE_DIR = './data'
 VIDEOS_FILE = 'video_data.csv'
-HTML_FILE = 'table.html'
+HTML_FILE = 'index.html'
 TEMPLATE_FILE ='template.html'
 
 paths = glob.glob(BASE_DIR + '/killed/*/line/*')
