@@ -35,10 +35,12 @@ for path in paths:
     
     url = 'https://www.youtube.com/watch?v=' + video_id + '&t=' + str(int(frame_id)//30)
 
-    print(global_id, timestamp, path, url)
-    data.append([global_id, timestamp, path, url])
+    channel_title = df1.at[video_id, 'channel_title']
 
-df2 = pd.DataFrame(data, columns=['id', 'timestamp', 'image', 'url'])
+    print(global_id, channel_title, timestamp, path, url)
+    data.append([global_id, channel_title, timestamp, path, url])
+
+df2 = pd.DataFrame(data, columns=['id', 'channel_title', 'timestamp', 'image', 'url'])
 df2 = df2.sort_values(['timestamp', 'id'])
 data = df2.to_dict('records')
 
