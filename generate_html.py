@@ -4,6 +4,7 @@ import re
 import pandas as pd
 from datetime import datetime, timedelta
 import pytz
+import json
 
 def dt2jstdt(dt):
     dt = pytz.utc.localize(dt).astimezone(pytz.timezone('Asia/Tokyo'))
@@ -17,18 +18,26 @@ def iso2jstdt(iso_str):
 BASE_DIR = './data'
 VIDEOS_FILE = 'video_data.csv'
 HTML_FILE = 'index.html'
-TEMPLATE_FILE ='template.html'
+TEMPLATE_FILE = 'template.html'
+
+FILTERING = False
+FILTER_FILE = 'aqua.json'
 
 paths = glob.glob(BASE_DIR + '/killed/*/line/*')
 
 data = []
 df1 = pd.read_csv(VIDEOS_FILE, sep=',')
 df1 = df1.set_index('video_id')
+if FILTERING:
+    with open(FILTER_FILE, encoding='utf-8') as f:
+        dic = json.load(f)
 for path in paths:
     names = re.split('[/.]', path)
     video_id = names[-4]
     frame_id, roi_id = names[-2].split('-')
     global_id = ':'.join([video_id, frame_id, roi_id])
+
+    if FILTERING and dic[global_id] == False: continue
 
     timestamp = iso2jstdt(df1.at[video_id, 'start']) + timedelta(seconds=int(frame_id)//30)
     timestamp = timestamp.strftime('%Y/%m/%d %H:%M:%S.%f')[:-4]
