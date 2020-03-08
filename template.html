@@ -19,7 +19,11 @@
             <th><input type="checkbox" id="{{row.id}}"></th>
             -->
             <th>{{row.channel_title}}</th>
+            {% if loop.index < 50 %}
+            <th><a href="{{row.url}}"><img src="{{row.image}}" width="1200" /></a></th>
+            {% else %}
             <th><a href="{{row.url}}"><img class="lazyload" data-src="{{row.image}}" width="1200" /></a></th>
+            {% endif %}
             <th><a href="{{row.url}}">jump to YouTube</a></th>
         </tr>
         {% endfor %}
