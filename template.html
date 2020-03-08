@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <title>Holo-ARK-killed-list</title>
+    <title>ARKホロ鯖 killed リスト</title>
 </head>
 
-<body>
-    <h2>Hololive-ARK killed creatures list</h2>
+<body text="#333333">
+    <h2>ARKホロ鯖 killed リスト</h2>
     <ul>
+        <li>対象はテイム済みの生き物のみです。</li>
         <li>自動検出のため抜けや誤検出があります。</li>
         <li>作業中のためまるごと抜けている配信があります。</li>
         <li>コード: <a href="https://github.com/Libra694/ark-detect-killed">killed検出</a>, 
@@ -16,28 +16,33 @@
     </ul>
     </br>
     <table>
-        {% for row in data %}
+        <tr>
+            <th>タイムスタンプ</th>
+            <th>チャンネル名</th>
+            <th>キルログ</th>
+        </tr>
+        {% for row in data -%}
         <tr>
             <th>{{row.timestamp}}</th>
             {#
             <th>{{row.id}}</th>
             <th><input type="checkbox" id="{{row.id}}"></th>
-            #}
+            -#}
             <th>{{row.channel_title}}</th>
-            {% if loop.index < 50 %}
+            {% if loop.index < 50 -%}
             <th><a href="{{row.url}}"><img src="{{row.image}}" width="1200" /></a></th>
-            {% else %}
+            {% else -%}
             <th><a href="{{row.url}}"><img class="lazyload" data-src="{{row.image}}" width="1200" /></a></th>
-            {% endif %}
+            {% endif -%}
             <th><a href="{{row.url}}">jump to YouTube</a></th>
         </tr>
-        {% endfor %}
+        {% endfor -%}
     </table>
     {#
     <br/>
     <input type="file" id="upload"><br/>
     <a href="" id="download" onclick="download_cheked()">Download</a>
-    #}
+    -#}
 
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>  
 
@@ -79,7 +84,7 @@
         }
         document.getElementById('upload').addEventListener('change', upload_file, false);
         document.getElementById('download').addEventListener('click', download_file, false);
-        #}
+        -#}
     </script>
 </body>
 
