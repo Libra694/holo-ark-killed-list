@@ -64,7 +64,9 @@
                 var elements = document.getElementsByTagName("input");
                 for(var i = 0; i < elements.length; i++) {
                     if(elements[i].type != "checkbox") continue;
-                    elements[i].checked = dic[elements[i].id]
+                    if (dic[elements[i].id]) {
+                        elements[i].checked = dic[elements[i].id];
+                    }
                 }
             }
         }
