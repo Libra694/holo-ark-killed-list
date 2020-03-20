@@ -30,10 +30,6 @@
         {% for row in data -%}
         <tr>
             <th>{{row.timestamp}}</th>
-            {#
-            <th>{{row.id}}</th>
-            <th><input type="checkbox" id="{{row.id}}"></th>
-            -#}
             <th>{{row.channel_title}}</th>
             {% if loop.index < 50 -%}
             <th><a href="{{row.url}}"><img src="{{row.image}}" width="1200" /></a></th>
@@ -44,55 +40,11 @@
         </tr>
         {% endfor -%}
     </table>
-    {#
-    <br/>
-    <input type="file" id="upload"><br/>
-    <a href="" id="download" onclick="download_cheked()">Download</a>
-    -#}
 
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>  
 
     <script type="text/javascript">
         lazyload();
-        {#
-        function upload_file(evt) {
-            var file = evt.target.files[0];
-            var reader = new FileReader();
-            reader.readAsText(file);
-            reader.onload = function () {
-                var dic = JSON.parse(reader.result);
-                var elements = document.getElementsByTagName("input");
-                for(var i = 0; i < elements.length; i++) {
-                    if(elements[i].type != "checkbox") continue;
-                    if (dic[elements[i].id]) {
-                        elements[i].checked = dic[elements[i].id];
-                    }
-                }
-            }
-        }
-        function download_file() {
-            var file_name = "cheked.json"
-            var dic = {}
-            var elements = document.getElementsByTagName("input");
-            for(var i = 0; i < elements.length; i++) {
-                if(elements[i].type != "checkbox") continue;
-                dic[elements[i].id] = elements[i].checked
-            }
-            var json = JSON.stringify(dic);
-
-            var blob = new Blob([json], {"type": "text/plain"});
-            if (window.navigator.msSaveBlob) { 
-                window.navigator.msSaveBlob(blob, file_name); 
-                window.navigator.msSaveOrOpenBlob(blob, file_name); 
-            } else {
-                var element = document.getElementById("download");
-                element.href = window.URL.createObjectURL(blob);
-                element.setAttribute('download', file_name);
-            }
-        }
-        document.getElementById('upload').addEventListener('change', upload_file, false);
-        document.getElementById('download').addEventListener('click', download_file, false);
-        -#}
     </script>
 </body>
 
